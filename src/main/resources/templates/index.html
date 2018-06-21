@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <title>Parser</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/}" method="post" class="mt-5 mb-2 w-100">
+        <div class="form-inline">
+            <div class="input-group w-75 pr-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">expression</span>
+                </div>
+                <input name="expression" type="text" class="form-control" placeholder="(ex. 12+2*9;)" required />
+            </div>
+            <button class="btn btn-primary w-25 ml-auto" type="submit" th:text="CHECK"></button>
+        </div>
+    </form>
+    <table>
+        <tr th:each="result : ${history}">
+            <td th:if="*{result.result}" class="text-success font-weight-bold pr-3" th:text="CORRECT"></td>
+            <td th:if="*{!result.result}" class="text-danger font-weight-bold pr-3" th:text="INCORRECT"></td>
+            <td th:text="*{result.expression}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
