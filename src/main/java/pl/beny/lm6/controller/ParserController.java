@@ -24,11 +24,13 @@ public class ParserController {
     @PostMapping("/")
     public String checkExpression(String expression, Model model) {
         Result result = new Result(expression);
+
         try {
             result.setResult(new Parser(expression.replaceAll("\\s+","")).parse());
         } catch (Exception e) {
             result.setResult(false);
         }
+
         history.addFirst(result);
         model.addAttribute("history", history);
         return "index";

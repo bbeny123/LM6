@@ -33,10 +33,7 @@ public class Parser {
             } else if (s.get(i).equals("(")) {
                 nextI();
                 parseW();
-                if (!s.get(i).equals(")")) {
-                    System.out.println(s.get(i));
-                    incorrect();
-                }
+                if (!s.get(i).equals(")")) incorrect();
                 nextI();
             }
         } while (inFirstO());
@@ -55,7 +52,7 @@ public class Parser {
     }
 
     private boolean inFirstW() {
-        return numbers.contains(s.get(i)) || s.get(i).equals("(");
+        return inFirstL() || s.get(i).equals("(");
     }
 
     private boolean inFirstL() {
